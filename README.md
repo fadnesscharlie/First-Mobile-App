@@ -13,3 +13,4 @@ A small circle icon will also show up as well with the colors going oppsite for 
 - [X,Y from Clicks](https://stackoverflow.com/questions/36862765/react-native-get-the-coordinates-of-my-touch-event)
 - [Creating Circles](https://stackoverflow.com/questions/30404067/creating-css-circles-in-react-native)
 - [LinearGradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/)
+- [Random Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)

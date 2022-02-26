@@ -5,40 +5,50 @@ import {LinearGradient} from 'expo-linear-gradient'
 
 export default function App() {
   let [ bgcolor, setBgcolor ] = useState({
-  colorBlue: 255,
-  colorGreen: 255,
-  secondBlue: 255,
-  secondGreen: 255
+    colorBlue: 255,
+    colorGreen: 255,
+    secondBlue: 255,
+    secondGreen: 255,
+    randomNum: 255
   })
 
   const handlePress = (evt) => {
 
-  let colorGreen = Math.floor(evt.nativeEvent.locationX * 599 % 255)
-  let colorBlue = Math.floor(evt.nativeEvent.locationY * 599 % 255)
-  let secondBlue = Math.abs(colorBlue - 255)
-  let secondGreen = Math.abs(colorGreen - 255)
+    let colorGreen = Math.floor(evt.nativeEvent.locationX * 599 % 255)
+    let colorBlue = Math.floor(evt.nativeEvent.locationY * 599 % 255)
+    let secondBlue = Math.abs(colorBlue - 255)
+    let secondGreen = Math.abs(colorGreen - 255)
 
-  setBgcolor({
-    colorBlue,
-    colorGreen,
-    secondBlue,
-    secondGreen
-  })
+    //Taken from dev mozilla
+    let getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    }
+    
+    setBgcolor({
+      colorBlue,
+      colorGreen,
+      secondBlue,
+      secondGreen,
+      getRandomInt: getRandomInt(0, 255)
+    })
   }
+
   return (
     <LinearGradient
-      colors={[`rgb(00, ${bgcolor.colorGreen}, ${bgcolor.colorBlue})`, `rgb(00, ${bgcolor.secondGreen}, ${bgcolor.secondBlue})`]}
+      colors={[`rgb(${bgcolor.getRandomInt}, ${bgcolor.colorGreen}, ${bgcolor.colorBlue})`, `rgb(${bgcolor.getRandomInt}, ${bgcolor.secondGreen}, ${bgcolor.secondBlue})`]}
       style={styles.container}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
     >
       <View>
-        <TouchableOpacity onPress={(evt) => handlePress(evt)}>
+        <TouchableOpacity onPress={(evt) => handlePress(evt)}> 
           <Text style={styles.paragraph}>
             Would you like an app that changes color depending on where you click?? Well you have come to the right place! Click inside this box to change the background color and create an amazing effect! Wow! It works like magic!
           </Text>
           <LinearGradient
-          colors={[`rgb(00, ${bgcolor.secondGreen}, ${bgcolor.secondBlue})`, `rgb(00, ${bgcolor.colorGreen}, ${bgcolor.colorBlue})`]}
+          colors={[`rgb(${bgcolor.getRandomInt}, ${bgcolor.secondGreen}, ${bgcolor.secondBlue})`, `rgb(${bgcolor.getRandomInt}, ${bgcolor.colorGreen}, ${bgcolor.colorBlue})`]}
           style={styles.circle}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
